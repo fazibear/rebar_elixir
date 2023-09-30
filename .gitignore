@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/emacs,erlang
 # Edit at https://www.gitignore.io/?templates=emacs,erlang
 
@@ -52,7 +51,6 @@ flycheck_*.el
 # network security
 /network-security.data
 
-
 ### Erlang ###
 .eunit
 deps
@@ -64,7 +62,9 @@ ebin/*.beam
 rel/example_project
 .concrete/DEV_MODE
 .rebar
-_build/
+_build
 ebin/
 .rebar3
+rebar3.lock
+rebar3
 # End of https://www.gitignore.io/api/emacs,erlang
