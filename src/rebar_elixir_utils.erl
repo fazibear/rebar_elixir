@@ -96,6 +96,7 @@ add_elixir(State) ->
   code:add_patha(filename:join(LibDir, "elixir/ebin")),
   code:add_patha(filename:join(LibDir, "mix/ebin")),
   code:add_patha(filename:join(LibDir, "logger/ebin")),
+  code:add_patha(filename:join(LibDir, "iex/ebin")),
   State.
 
 %% @doc Add elixir to the application build path
@@ -119,6 +120,11 @@ add_elixir_to_build_path(State)->
   MixBuildPath = filename:join(BuildPath, "mix"),
   file:make_symlink(MixPath, MixBuildPath),
 
+  %% Link iex
+  IExPath = filename:join(LibDir, "iex"),
+  IExBuildPath = filename:join(BuildPath, "iex"),
+  file:make_symlink(IExPath, IExBuildPath),
+
   State.
 
 %% @doc Add elixir to a list of lock dependencies.
@@ -128,7 +134,8 @@ elixir_to_lock(Lock) ->
     [
      {<<"elixir">>, {iex_dep, <<"elixir">>, <<"">>}, 0},
      {<<"logger">>, {iex_dep, <<"logger">>, <<"">>}, 0},
-     {<<"mix">>, {iex_dep, <<"mix">>, <<"">>}, 0}
+     {<<"mix">>, {iex_dep, <<"mix">>, <<"">>}, 0},
+     {<<"iex">>, {iex_dep, <<"iex">>, <<"">>}, 0}
     ].
 
 %% @doc compiles a elixir app which is located in AppDir.
@@ -169,7 +176,6 @@ move_to_path(Files, Source, Traget) ->
 -spec delete(string()) -> string().
 delete(Dir) ->
   os:cmd("rm -Rf " ++ Dir).
-
 
 %%=============================
 %% Private functions
