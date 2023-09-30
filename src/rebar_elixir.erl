@@ -35,4 +35,5 @@ init(State) ->
 
   State7 = rebar_elixir_consolidate_protocols:init(State6),
   State8 = rebar_elixir_compile:init(State7),
-  {ok, State8}.
+  State9 = rebar_elixir_shell:init(State8),
+  {ok, State9}.
